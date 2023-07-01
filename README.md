@@ -3,6 +3,8 @@
 
 TaskNinja is a productivity app that helps you stay organized and manage your tasks effectively. This repository contains the frontend code for the TaskNinja app, built using Expo, Reanimated, Expo Router, AWS Amplify, and AWS AppSync.
 
+  [Link to Figma wireframe](https://www.figma.com/file/jb2gcjedcdtd8tImTPB0eC/TaskNinja?type=design&t=QbAUAM6ZkJCvyYa1-6)
+
 ## Features
 
 - **Task Management**: Create, organize, and prioritize your tasks with ease.
