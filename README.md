@@ -1,7 +1,4 @@
-# TaskNinja 
-
-![Logo](https://res.cloudinary.com/evergreenx/image/upload/v1688238985/_e791d655-00d3-4696-bda7-ba4f81f4bcbb-removebg-preview_1_lqi8jw.png)
-
+# TaskNinja App
 <img src="https://res.cloudinary.com/evergreenx/image/upload/v1688238985/_e791d655-00d3-4696-bda7-ba4f81f4bcbb-removebg-preview_1_lqi8jw.png"  width="300" height="300">
 
 TaskNinja is a productivity app that helps you stay organized and manage your tasks effectively. This repository contains the frontend code for the TaskNinja app, built using Expo, Reanimated, Expo Router, AWS Amplify, and AWS AppSync.
@@ -24,8 +21,8 @@ TaskNinja is a productivity app that helps you stay organized and manage your ta
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/taskninja-frontend.git`
-2. Navigate to the project directory: `cd taskninja-frontend`
+1. Clone the repository: `git clone https://github.com/evergreenx/taskninja-frontend.git`
+2. Navigate to the project directory: `cd taskninja`
 3. Install dependencies: `npm install`
 4. Configure and initialize AWS Amplify: `amplify init`
 5. Add AWS AppSync to the project: `amplify add api`
