@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-taskninja-dev-04618-authRole",
+      "UnauthRoleArn": "arn:aws:iam::626863455784:role/amplify-taskninja-dev-04618-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::626863455784:role/amplify-taskninja-dev-04618-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-taskninja-dev-04618-deployment",
+      "UnauthRoleName": "amplify-taskninja-dev-04618-unauthRole",
+      "StackName": "amplify-taskninja-dev-04618",
+      "StackId": "arn:aws:cloudformation:us-east-1:626863455784:stack/amplify-taskninja-dev-04618/fc00ff20-1ac4-11ee-899f-12422ec3f735",
+      "AmplifyAppId": "d3soc08c7xg2wu"
+    },
+    "categories": {
+      "api": {
+        "taskninja": {}
+      },
+      "auth": {
+        "taskninja": {}
+      }
+    }
+  }
+}
