@@ -1,8 +1,12 @@
-import { Stack } from "expo-router";
+import { Stack, SplashScreen } from "expo-router";
 import { View, Text } from "react-native";
+import { React, useState, useEffect } from "react";
+import { TabsLayout } from "../app/(tabs)/_layout.js";
 
 import { Amplify } from "aws-amplify";
 import awsExports from "../src/aws-exports";
+// import { SplashScreen } from "expo-router";
+
 import {
   Authenticator,
   useTheme,
@@ -20,9 +24,20 @@ const theme = {
   },
 };
 
+SplashScreen.preventAutoHideAsync();
+
 export default function Layout() {
+  const [isReady, setReady] = useState(false);
   Amplify.configure(awsExports);
 
+  useEffect(() => {
+    // Perform some sort of async data or asset fetching.
+    setTimeout(() => {
+      // When all loading is setup, unmount the splash screen component.
+      SplashScreen.hideAsync();
+      setReady(true);
+    }, 1000);
+  }, []);
   const {
     tokens: { space, fontSizes, colors },
   } = useTheme();
@@ -98,7 +113,15 @@ export default function Layout() {
             screenOptions={{
               headerShown: false,
             }}
-          />
+            initialRouteName="(tabs)"
+          >
+            <Stack.Screen
+              name="(tabs)"
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack>
         </Authenticator>
       </Authenticator.Provider>
     </ThemeProvider>
