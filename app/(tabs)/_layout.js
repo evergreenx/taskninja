@@ -7,6 +7,7 @@ import { Octicons } from "@expo/vector-icons";
 
 import { Platform, View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 export default function TabsLayout() {
   return (
@@ -18,7 +19,6 @@ export default function TabsLayout() {
         tabBarInactiveTintColor: "gray",
         title: "TaskNinja",
         tabBarShowLabel: false,
-        
       }}
       tabBar={(props) =>
         Platform.OS === "ios" ? (
@@ -65,7 +65,7 @@ export default function TabsLayout() {
             pathname: "/calendar",
           },
           tabBarIcon: ({ color }) => (
-            <Octicons name="calendar" size={24} color={color}  />
+            <Octicons name="calendar" size={24} color={color} />
           ),
         }}
       />
@@ -75,7 +75,7 @@ export default function TabsLayout() {
         options={{
           href: "/home",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="md-settings-outline" size={24} color={color}  />
+            <Ionicons name="md-settings-outline" size={24} color={color} />
           ),
         }}
       />

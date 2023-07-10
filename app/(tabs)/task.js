@@ -7,9 +7,8 @@ export default function Task() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Account</Text>
-  
-      <Text>Log out</Text>
 
+      <Text>Log out</Text>
     </View>
   );
 }
