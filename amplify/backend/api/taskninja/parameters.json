@@ -2,5 +2,11 @@
   "AppSyncApiName": "taskninja",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-07-10T20:32:14.954Z"
+  "AuthModeLastUpdated": "2023-07-10T23:30:33.950Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authtaskninja",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

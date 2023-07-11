@@ -1,5 +1,12 @@
+type Note @model @auth(rules: [{allow: public}, {allow: private, operations: [create, read]}, {allow: owner}]) {
+  id: ID!
+  topic: String
+  content: String
+}
+
 type Todo @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   description: String
-} 
+}
+ 
