@@ -99,36 +99,36 @@ const sampleTasks = [
 ];
 
 function Note() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(sampleTasks);
 
   const size = 20;
 
-  const fetchTodos = async () => {
-    const tasks = await DataStore.query(Todo, Predicates.ALL, {
-      sort: (s) => s.updatedAt(SortDirection.DESCENDING),
-    });
+  // const fetchTodos = async () => {
+  //   const tasks = await DataStore.query(Todo, Predicates.ALL, {
+  //     sort: (s) => s.updatedAt(SortDirection.DESCENDING),
+  //   });
 
-    const checkOwner = tasks.filter(
-      (note) => Auth.user.attributes.sub === note.owner
-    );
+  //   const checkOwner = tasks.filter(
+  //     (note) => Auth.user.attributes.sub === note.owner
+  //   );
 
-    opacity.value = withTiming(1, {
-      duration: 500,
-      easing: Easing.inOut(Easing.ease),
-    });
+  //   opacity.value = withTiming(1, {
+  //     duration: 500,
+  //     easing: Easing.inOut(Easing.ease),
+  //   });
 
-    setTodos(checkOwner);
-  };
+  //   setTodos(checkOwner);
+  // };
 
-  useEffect(() => {
-    fetchTodos();
+  // useEffect(() => {
+  //   fetchTodos();
 
-    const subscription = DataStore.observe(Todo).subscribe(() => fetchTodos());
+  //   const subscription = DataStore.observe(Todo).subscribe(() => fetchTodos());
 
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
+  //   return () => {
+  //     subscription.unsubscribe();
+  //   };
+  // }, []);
 
   const formatTime = (date) => {
     return format(date, "HH:mm:a");
@@ -145,7 +145,7 @@ function Note() {
     }
   };
 
-  const groupTasksByDay = sampleTasks.reduce((acc, order) => {
+  const groupTasksByDay = todos.reduce((acc, order) => {
     const createdAt = new Date(order.createdAt);
     if (!isNaN(createdAt.getTime())) {
       const day = createdAt.toISOString().split("T")[0];
@@ -168,6 +168,16 @@ function Note() {
     tasks,
   }));
 
+  const toggleTaskCompletion = (taskId) => {
+    setTodos((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  console.log(todos);
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -188,28 +198,50 @@ function Note() {
         estimatedItemSize={100}
         keyExtractor={(item) => item.day}
         renderItem={({ item }) => {
-          console.log(item, "text");
           return (
             <>
               <CustomText style={styles.dateText}>
                 {formatDate(new Date(item.day))}
               </CustomText>
               <View style={styles.tasksContainer}>
-                <CustomCheckbox />
-
                 {item.tasks.map((task) => (
                   <>
+                    <CustomCheckbox
+                      isChecked={task.completed}
+                      onToggle={() => toggleTaskCompletion(task.id)}
 
-                  <View>
-                  <CustomText style={styles.tasksText}>
-                      {task.title}
-                    </CustomText>
+                      // onToggle={() => alert(task.title)}
+                    />
 
-                    <CustomText style={styles.tasksTime}>
-                      {formatTime(new Date(task.createdAt), {})}
-                    </CustomText>
-                  </View>
-                  
+                    <View>
+                      <CustomText
+                        style={[
+                          styles.tasksText,
+                          {
+                            textDecorationLine: task.completed
+                              ? "line-through"
+                              : "none",
+                            opacity: task.completed ? 0.2 : 0.8,
+                          },
+                        ]}
+                      >
+                        {task.title}
+                      </CustomText>
+
+                      <CustomText
+                        style={[
+                          styles.tasksTime,
+                          {
+                            textDecorationLine: task.completed
+                              ? "line-through"
+                              : "none",
+                            opacity: task.completed ? 0.2 : 0.8,
+                          },
+                        ]}
+                      >
+                        {formatTime(new Date(task.createdAt), {})}
+                      </CustomText>
+                    </View>
                   </>
                 ))}
                 <View></View>

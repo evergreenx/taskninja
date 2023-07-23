@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const CustomCheckbox = () => {
-  const [isChecked, setIsChecked] = useState(false);
+const CustomCheckbox = ({ isChecked, onToggle }) => {
+  // const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxToggle = () => {
-    setIsChecked(!isChecked);
+    onToggle(!isChecked);
   };
 
   return (
