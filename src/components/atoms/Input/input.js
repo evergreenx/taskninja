@@ -6,6 +6,7 @@ const Input = ({ placeholder, value, onChangeText }) => {
     <TextInput
       style={styles.input}
       placeholder={placeholder}
+      placeholderTextColor="gray"
       value={value}
       onChangeText={onChangeText}
     />
@@ -15,8 +16,10 @@ const Input = ({ placeholder, value, onChangeText }) => {
 const styles = StyleSheet.create({
   input: {
     height: 40,
+    color: "black",
+
     borderColor: "gray",
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 4,
     paddingHorizontal: 8,
     marginBottom: 16,

@@ -12,7 +12,7 @@ import { StatusBar } from "expo-status-bar";
 export default function TabsLayout() {
   return (
     <Tabs
-      initialRouteName="note"
+      initialRouteName="/note"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "black",

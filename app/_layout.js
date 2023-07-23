@@ -3,8 +3,9 @@ import { View, Text } from "react-native";
 import { React, useState, useEffect } from "react";
 import { TabsLayout } from "../app/(tabs)/_layout.js";
 
-import { Amplify } from "aws-amplify";
+import { Amplify, AuthModeStrategyType } from "aws-amplify";
 import awsExports from "../src/aws-exports";
+
 // import { SplashScreen } from "expo-router";
 
 import {
@@ -13,6 +14,29 @@ import {
   ThemeProvider,
   defaultDarkModeOverride,
 } from "@aws-amplify/ui-react-native";
+import Button from "../src/components/atoms/Button/button.js";
+
+import {
+  useFonts,
+  Poppins_100Thin,
+  Poppins_100Thin_Italic,
+  Poppins_200ExtraLight,
+  Poppins_200ExtraLight_Italic,
+  Poppins_300Light,
+  Poppins_300Light_Italic,
+  Poppins_400Regular,
+  Poppins_400Regular_Italic,
+  Poppins_500Medium,
+  Poppins_500Medium_Italic,
+  Poppins_600SemiBold,
+  Poppins_600SemiBold_Italic,
+  Poppins_700Bold,
+  Poppins_700Bold_Italic,
+  Poppins_800ExtraBold,
+  Poppins_800ExtraBold_Italic,
+  Poppins_900Black,
+  Poppins_900Black_Italic,
+} from "@expo-google-fonts/poppins";
 
 const theme = {
   tokens: {
@@ -28,7 +52,12 @@ SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
   const [isReady, setReady] = useState(false);
-  Amplify.configure(awsExports);
+  Amplify.configure({
+    ...awsExports,
+    DataStore: {
+      authModeStrategyType: AuthModeStrategyType.MULTI_AUTH,
+    },
+  });
 
   useEffect(() => {
     // Perform some sort of async data or asset fetching.
@@ -58,13 +87,31 @@ export default function Layout() {
     );
   };
 
-  const MySignIn = () => {
-    return (
-      <View>
-        <Text>My Sign In</Text>
-      </View>
-    );
-  };
+  let [fontsLoaded] = useFonts({
+    Poppins_100Thin,
+    Poppins_100Thin_Italic,
+    Poppins_200ExtraLight,
+    Poppins_200ExtraLight_Italic,
+    Poppins_300Light,
+    Poppins_300Light_Italic,
+    Poppins_400Regular,
+    Poppins_400Regular_Italic,
+    Poppins_500Medium,
+    Poppins_500Medium_Italic,
+    Poppins_600SemiBold,
+    Poppins_600SemiBold_Italic,
+    Poppins_700Bold,
+    Poppins_700Bold_Italic,
+    Poppins_800ExtraBold,
+    Poppins_800ExtraBold_Italic,
+    Poppins_900Black,
+    Poppins_900Black_Italic,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <ThemeProvider
       theme={{
@@ -109,9 +156,17 @@ export default function Layout() {
             SignIn: (props) => <Authenticator.SignIn {...props} hideSignUp />,
           }}
         >
+          {/* <Button title="Sign Out" onPress={() => signOut()}></Button> */}
           <Stack
             screenOptions={{
               headerShown: false,
+            }}
+            style={{
+              backgroundColor: "red",
+              flex: 1,
+              width: "100%",
+              padding: 10,
+              fontFamily: "Poppins_600Regular",
             }}
             initialRouteName="(tabs)"
           >
@@ -121,6 +176,8 @@ export default function Layout() {
                 headerShown: false,
               }}
             />
+
+            <Stack.Screen name="newNote" />
           </Stack>
         </Authenticator>
       </Authenticator.Provider>

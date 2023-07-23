@@ -1,7 +1,6 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
-
 const FabButton = ({ title, onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     elevation: 6,
     shadowColor: "#000000",
     shadowOpacity: 0.3,
