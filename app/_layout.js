@@ -5,6 +5,7 @@ import { TabsLayout } from "../app/(tabs)/_layout.js";
 
 import { Amplify, AuthModeStrategyType } from "aws-amplify";
 import awsExports from "../src/aws-exports";
+import Toast from "react-native-toast-message";
 
 // import { SplashScreen } from "expo-router";
 
@@ -112,75 +113,114 @@ export default function Layout() {
     return null;
   }
 
-  return (
-    <ThemeProvider
-      theme={{
-        tokens: {
-          space: {
-            brand: {
-              10: "{space.xs}",
-              20: "{space.sm}",
-              40: "{space.md}",
-              60: "{space.lg}",
-              80: "{space.xl}",
-            },
-          },
+  const toastConfig = {
+    taskToast: ({ text1, text2 }) => (
+      <View
+        style={{
+          height: 60,
+          paddingHorizontal: 10,
+          width: "80%",
+          backgroundColor: "black",
+          borderRadius: 10,
+          marginHorizontal: 10,
+        }}
+      >
+        <Text
+          style={{
+            color: "white",
+            fontFamily: "Poppins_600Regular",
+            fontSize: 12,
+            padding: 10,
+          }}
+        >
+          {text1}
+        </Text>
+        <Text
+          style={{
+            color: "white",
+            fontFamily: "Poppins_600Regular",
+            fontSize: 10,
+            paddingHorizontal: 10,
+          }}
+        >
+          {text2}
+        </Text>
+      </View>
+    ),
+  };
 
-          colors: {
-            brand: {
-              primary: {
-                10: "{colors.black}",
-                20: "{colors.black}",
-                40: "{colors.black}",
-                60: "{colors.black}",
-                80: "#000000",
-                90: "{colors.black.90}",
-                100: "{colors.pink.100}",
+  return (
+    <>
+      <ThemeProvider
+        theme={{
+          tokens: {
+            space: {
+              brand: {
+                10: "{space.xs}",
+                20: "{space.sm}",
+                40: "{space.md}",
+                60: "{space.lg}",
+                80: "{space.xl}",
+              },
+            },
+
+            colors: {
+              brand: {
+                primary: {
+                  10: "{colors.black}",
+                  20: "{colors.black}",
+                  40: "{colors.black}",
+                  60: "{colors.black}",
+                  80: "#000000",
+                  90: "{colors.black.90}",
+                  100: "{colors.pink.100}",
+                },
               },
             },
           },
-        },
 
-        overrides: [defaultDarkModeOverride],
-      }}
-    >
-      <Authenticator.Provider>
-        <Authenticator
-          // components={{ SignIn: MySignIn }}
-          Container={(props) => (
-            // reuse default `Container` and apply custom background
-            <Authenticator.Container {...props} style={{}} />
-          )}
-          Header={MyAppHeader}
-          components={{
-            SignIn: (props) => <Authenticator.SignIn {...props} hideSignUp />,
-          }}
-        >
-          {/* <Button title="Sign Out" onPress={() => signOut()}></Button> */}
-          <Stack
-            screenOptions={{
-              headerShown: false,
+          overrides: [defaultDarkModeOverride],
+        }}
+      >
+        <Authenticator.Provider>
+          <Authenticator
+            // components={{ SignIn: MySignIn }}
+            Container={(props) => (
+              // reuse default `Container` and apply custom background
+              <Authenticator.Container {...props} style={{}} />
+            )}
+            Header={MyAppHeader}
+            components={{
+              SignIn: (props) => <Authenticator.SignIn {...props} hideSignUp />,
             }}
-            style={{
-              backgroundColor: "red",
-              flex: 1,
-              width: "100%",
-              padding: 10,
-              fontFamily: "Poppins_600Regular",
-            }}
-            initialRouteName="(tabs)"
           >
-            <Stack.Screen
-              name="(tabs)"
-              options={{
+            {/* <Button title="Sign Out" onPress={() => signOut()}></Button> */}
+            <Stack
+              screenOptions={{
                 headerShown: false,
               }}
-            />
+              style={{
+                backgroundColor: "red",
+                flex: 1,
+                width: "100%",
+                padding: 10,
+                fontFamily: "Poppins_600Regular",
+              }}
+              initialRouteName="(tabs)"
+            >
+              <Stack.Screen
+                name="(tabs)"
+                options={{
+                  headerShown: false,
+                }}
+              />
 
-            <Stack.Screen name="newNote" />
-          </Stack>
-        </Authenticator>
-      </Authenticator.Provider>
-    </ThemeProvider>
+              <Stack.Screen name="newNote" />
+            </Stack>
+          </Authenticator>
+        </Authenticator.Provider>
+      </ThemeProvider>
+      <Toast config={toastConfig} />
+    </>
   );
 }

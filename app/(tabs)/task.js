@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, StatusBar } from "react-native";
 import { useState, useEffect } from "react";
 
 import { Link } from "expo-router";
@@ -15,6 +15,7 @@ import { listTodos, getTodo } from "../../src/graphql/queries";
 import FabButton from "../../src/components/atoms/Button/fabButton";
 import CustomCheckbox from "../../src/components/atoms/CheckBox/checkbox";
 import CustomText from "../../src/components/atoms/Text/text";
+import StickyHeader from "../../src/components/atoms/StickyHeader/stickyheader";
 import {
   format,
   formatISO,
@@ -22,6 +23,8 @@ import {
   isYesterday,
   formatDistanceToNow,
 } from "date-fns";
+
+import Toast from "react-native-toast-message";
 
 const size = 20;
 
@@ -174,12 +177,29 @@ function Note() {
         task.id === taskId ? { ...task, completed: !task.completed } : task
       )
     );
+  
+    const task = todos.find((task) => task.id === taskId);
+    if (task && !task.completed) {
+      Toast.show({
+        type: "taskToast",
+        text1: "Task completed",
+        text2: "Good job! 🤖",
+        position: "bottom",
+        visibilityTime: 1500,
+      });
+    }
   };
+  
 
   console.log(todos);
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={"#ddd"}
+        translucent
+      />
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Tasks</Text>
         {sampleTasks.length > 0 ? (
@@ -197,6 +217,7 @@ function Note() {
         data={tasksData} // Reverse the order of noteData
         estimatedItemSize={100}
         keyExtractor={(item) => item.day}
+        // ListHeaderComponent={<StickyHeader title={"TASK"} />}
         renderItem={({ item }) => {
           return (
             <>
