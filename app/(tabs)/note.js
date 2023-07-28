@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet, FlatList } from "react-native";
+import { View, Text, Pressable, StyleSheet, FlatList,StatusBar } from "react-native";
 import { useState, useEffect, useMemo } from "react";
 import { FlashList } from "@shopify/flash-list";
 
@@ -120,6 +120,11 @@ export default function NoteScreen() {
   // const handleCreateNote = async () => {};
   return (
     <>
+        <StatusBar
+        barStyle="light-content"
+        backgroundColor={"#ddd"}
+        translucent
+      />
       <View style={[styles.container]}>
         <View style={styles.headerContainer}>
           <CustomText style={styles.header}>Notes</CustomText>

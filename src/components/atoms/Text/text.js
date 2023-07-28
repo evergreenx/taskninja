@@ -22,7 +22,9 @@ import {
   Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
 
-const CustomText = ({ style, ...props }) => {
+const CustomText = ({ style, fontFamily, ...props }) => {
+  const font = fontFamily ? fontFamily : "Poppins_900Black";
+
   let [fontsLoaded] = useFonts({
     Poppins_100Thin,
     Poppins_100Thin_Italic,
@@ -43,12 +45,12 @@ const CustomText = ({ style, ...props }) => {
     Poppins_900Black,
     Poppins_900Black_Italic,
   });
-  return <Text {...props} style={[styles.text, style]} />;
+  return <Text {...props} style={[styles.text, style, font]} />;
 };
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "Poppins_300Light", // Replace 'Your-Font-Family' with your desired font family
+    // fontFamily: `${font}`, // Replace 'Your-Font-Family' with your desired font family
   },
 });
 

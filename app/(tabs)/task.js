@@ -177,19 +177,18 @@ function Note() {
         task.id === taskId ? { ...task, completed: !task.completed } : task
       )
     );
-  
+
     const task = todos.find((task) => task.id === taskId);
     if (task && !task.completed) {
       Toast.show({
         type: "taskToast",
-        text1: "Task completed",
-        text2: "Good job! 🤖",
+        text1: "Task Completed",
+        text2: "Great job, you've completed the task. 🎉",
         position: "bottom",
         visibilityTime: 1500,
       });
     }
   };
-  
 
   console.log(todos);
 
