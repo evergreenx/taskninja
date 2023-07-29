@@ -16,7 +16,7 @@ export default function OnboardingPage() {
     animation.current?.play();
 
     // Or set a specific startFrame and endFrame with:
-    animation.current?.play(30, 120);
+    animation.current?.play(0, 100);
   }, []);
   const onboardingScreens = [
     {
@@ -30,6 +30,7 @@ export default function OnboardingPage() {
       subtitle: (
         <Button
           title="Continue"
+          isBGDARK={true}
           onPress={() => onboardingRef.current.goNext()}
         />
       ),
@@ -39,7 +40,7 @@ export default function OnboardingPage() {
           style={{
             // height: 200,
             // width: 200,
-    
+
             borderRadius: 100,
             marginHorizontal: 20,
           }}
@@ -71,7 +72,7 @@ export default function OnboardingPage() {
       title: (
         <CustomText
           style={styles.title}
-        >{`Plan your day and manage your time`}</CustomText>
+        >{`Stay organized ${"\n"}and efficient`}</CustomText>
       ),
 
       image: (
@@ -79,7 +80,7 @@ export default function OnboardingPage() {
           style={{
             // height: 200,
             // width: 200,
-    
+
             borderRadius: 100,
             marginHorizontal: 20,
           }}
@@ -106,6 +107,7 @@ export default function OnboardingPage() {
       subtitle: (
         <Button
           title="Continue"
+          isBGDARK={true}
           onPress={() => onboardingRef.current.goNext()}
         />
       ),
@@ -113,16 +115,48 @@ export default function OnboardingPage() {
     },
 
     {
-      backgroundColor: "#fff",
+      backgroundColor: "#000",
 
       title: (
         <CustomText
-          style={styles.title}
-        >{`Track your progress and stay motivated`}</CustomText>
+          style={[styles.title, { color: "#fff" }]}
+        >{`Plan, manage ${"\n"}and track tasks `}</CustomText>
+      ),
+
+      image: (
+        <View
+          style={{
+            // height: 200,
+            // width: 200,
+
+            borderRadius: 100,
+            marginHorizontal: 20,
+          }}
+        >
+          <LottieView
+            autoPlay
+            // duration={3000}
+            loop
+            ref={animation}
+            style={{
+              width: 300,
+              height: 300,
+
+              borderRadius: 20,
+            }}
+            // Find more Lottie files at https://lottiefiles.com/featured
+            // source={
+            //   "https://lottie.host/31b09e48-e7ee-41bc-b25d-2690c7f55158/M48QmdmsDe.json"
+            // }
+
+            source={require("./3 - Schedule (2).json")}
+          />
+        </View>
       ),
       subtitle: (
         <Button
           title="Continue"
+          isBGDARK={false}
           onPress={() => onboardingRef.current.goNext()}
         />
       ),
@@ -134,17 +168,22 @@ export default function OnboardingPage() {
     <Onboarding
       pages={onboardingScreens}
       onDone={() => setReady(true)}
+      transitionAnimationDuration={1000}
       showSkip={false}
+      showDone={false}
       showNext={false}
-
+      bottomBarColor="#fff"
+      bottomBarHeight={0}
+      bottomBarHighlight={false}
       showPagination={false}
-  
       ref={onboardingRef}
-      showDone={true}
       onSkip={() => setReady(true)}
+      DotComponent={({ selected, isLight }) => (
+        <Square selected={selected} isLight={isLight} />
+      )}
       containerStyles={{
         flex: 1,
-   
+
         // justifyContent: "flex-start",
       }}
     />
@@ -155,10 +194,51 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 38,
     marginBottom: 50,
-    letterSpacing: 0.2,
+
     fontWeight: "bold",
     color: "#000000",
     textAlign: "center",
     fontFamily: "Poppins_600SemiBold",
   },
+
+  titleWhite: {
+    color: "#fff",
+  },
+
+  paginationContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 5,
+    backgroundColor: "gray",
+  },
+  activeDot: {
+    backgroundColor: "blue",
+  },
 });
+
+const Square = ({ isLight, selected }) => {
+  let backgroundColor;
+  if (isLight) {
+    backgroundColor = selected ? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.3)";
+  } else {
+    backgroundColor = selected ? "#fff" : "rgba(255, 255, 255, 0.5)";
+  }
+  return (
+    <View
+      style={{
+        width: 30,
+        borderRadius: 5,
+        height: 6,
+        marginHorizontal: 3,
+        backgroundColor,
+      }}
+    />
+  );
+};

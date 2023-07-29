@@ -2,10 +2,13 @@ import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import CustomText from "../Text/text";
 
-const onBoardingBtn = ({ title, onPress }) => {
+const OnBoardingBtn = ({ title, onPress, isBGDARK }) => {
+  const buttonStyle = isBGDARK ? styles.darkButton : styles.lightButton;
+  const textColor = isBGDARK ? styles.darkButtonText : styles.lightButtonText;
+
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <CustomText style={styles.buttonText}>{title}</CustomText>
+    <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
+      <CustomText style={[styles.buttonText, textColor]}>{title}</CustomText>
     </TouchableOpacity>
   );
 };
@@ -13,19 +16,27 @@ const onBoardingBtn = ({ title, onPress }) => {
 const styles = StyleSheet.create({
   button: {
     width: "80%",
-
-    backgroundColor: "#000000",
     paddingVertical: 25,
     paddingHorizontal: 20,
     borderRadius: 18,
   },
+  darkButton: {
+    backgroundColor: "#000000",
+  },
+  lightButton: {
+    backgroundColor: "#ffffff",
+  },
   buttonText: {
-    color: "white",
     textAlign: "left",
     fontSize: 18,
-    // fontWeight: "500",
     fontFamily: "Poppins_600SemiBold",
+  },
+  darkButtonText: {
+    color: "white",
+  },
+  lightButtonText: {
+    color: "black",
   },
 });
 
-export default onBoardingBtn;
+export default OnBoardingBtn;
