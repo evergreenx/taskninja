@@ -17,7 +17,7 @@ import Animated, {
 
 const CustomTabBarButton = ({ label, icon, onPress, isFocused, color }) => {
   const activeColor = color;
-  const inactiveColor = "gray";
+  const inactiveColor = "#fff";
 
   const tabColor = isFocused ? activeColor : inactiveColor;
   const borderBottomColor = isFocused ? activeColor : "transparent";
@@ -46,6 +46,7 @@ const CustomTabBarButton = ({ label, icon, onPress, isFocused, color }) => {
         justifyContent: "center",
         alignItems: "center",
         paddingVertical: 10,
+
         
 
         // backgroundColor: "red",
@@ -53,7 +54,7 @@ const CustomTabBarButton = ({ label, icon, onPress, isFocused, color }) => {
     >
       <View style={{ alignItems: "center" }} onLayout={handleLayout}>
         {icon === "note" && (
-          <MaterialIcons name="notes" size={24} color={tabColor} />
+          <MaterialIcons name="notes" size={24} color={tabColor}  />
         )}
         {icon === "task" && (
           <Octicons name="tasklist" size={24} color={tabColor} />
@@ -86,7 +87,7 @@ const CustomTabBarButton = ({ label, icon, onPress, isFocused, color }) => {
 };
 
 export default function TabsLayout() {
-  const tabColors = ["#007AFF", "#FF8C00", "#009ACD", "#8BC34A"]; // Colors for each tab
+  const tabColors = ["#fff", "#fff", "#fff", "#fff"]; // Colors for each tab
 
   return (
     <Tabs
@@ -133,7 +134,8 @@ export default function TabsLayout() {
                 justifyContent: "space-around",
                 marginHorizontal: 20,
                 borderRadius: 40,
-                backgroundColor: "#ddd",
+                backgroundColor: "#000",
+                zIndex: 1,
                 paddingVertical: 10,
               }}
             >
@@ -197,7 +199,7 @@ export default function TabsLayout() {
                 justifyContent: "space-around",
                 marginHorizontal: 20,
                 borderRadius: 40,
-                backgroundColor: "#ddd",
+                backgroundColor: "#fff",
                 paddingVertical: 10,
               }}
             >

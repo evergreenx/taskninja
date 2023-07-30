@@ -1,5 +1,5 @@
 import { View, Text, Pressable, StyleSheet, StatusBar } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import { Link } from "expo-router";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -16,6 +16,7 @@ import FabButton from "../../src/components/atoms/Button/fabButton";
 import CustomCheckbox from "../../src/components/atoms/CheckBox/checkbox";
 import CustomText from "../../src/components/atoms/Text/text";
 import StickyHeader from "../../src/components/atoms/StickyHeader/stickyheader";
+import BottomSheet from "../../src/components/atoms/BotttomSheet/index";
 import {
   format,
   formatISO,
@@ -101,11 +102,16 @@ const sampleTasks = [
   },
 ];
 
-function Note() {
+function Task() {
   const [todos, setTodos] = useState(sampleTasks);
+
+  const sheetRef = useRef(null);
 
   const size = 20;
 
+  const handleSnapPress = useCallback((index) => {
+    sheetRef.current?.snapToIndex(index);
+  }, []);
   // const fetchTodos = async () => {
   //   const tasks = await DataStore.query(Todo, Predicates.ALL, {
   //     sort: (s) => s.updatedAt(SortDirection.DESCENDING),
@@ -184,7 +190,7 @@ function Note() {
         type: "taskToast",
         text1: "Task Completed",
         text2: "Great job, you've completed the task. 🎉",
-        position: "bottom",
+        position: "top",
         visibilityTime: 1500,
       });
     }
@@ -196,7 +202,7 @@ function Note() {
     <View style={styles.container}>
       <StatusBar
         barStyle="light-content"
-        backgroundColor={"#ddd"}
+        backgroundColor={"#000"}
         translucent
       />
       <View style={styles.headerContainer}>
@@ -271,10 +277,9 @@ function Note() {
         }}
       />
 
-      <FabButton
-        title={"+"}
-        onPress={() => router.push("/newNote")}
-      ></FabButton>
+      <FabButton title={"+"} onPress={() => handleSnapPress(2)}></FabButton>
+
+      <BottomSheet sheetRef={sheetRef} />
     </View>
   );
 }
@@ -335,4 +340,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Note;
+export default Task;

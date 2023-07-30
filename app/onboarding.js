@@ -2,11 +2,13 @@ import { View, Text, StyleSheet } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
 
 import Onboarding from "react-native-onboarding-swiper";
-import Button from "../../src/components/atoms/Button/onBoardingBtn";
-import CustomText from "../../src/components/atoms/Text/text";
+import Button from "../src/components/atoms/Button/onBoardingBtn";
+import CustomText from "../src/components/atoms/Text/text";
 import LottieView from "lottie-react-native";
 
-export default function OnboardingPage() {
+export default function OnboardingScreen(
+  { setFirstLaunch}
+) {
   const [isReady, setReady] = useState(false);
   const animation = useRef(null);
 
@@ -60,7 +62,7 @@ export default function OnboardingPage() {
             //   "https://lottie.host/31b09e48-e7ee-41bc-b25d-2690c7f55158/M48QmdmsDe.json"
             // }
 
-            source={require("./animation_lkn3gb05.json")}
+            source={require("../src/assets/3 - Schedule (2).json")}
           />
         </View>
       ),
@@ -100,7 +102,7 @@ export default function OnboardingPage() {
             //   "https://lottie.host/31b09e48-e7ee-41bc-b25d-2690c7f55158/M48QmdmsDe.json"
             // }
 
-            source={require("./Animation - 1690575268670.json")}
+            source={require("../src/assets/animation_lkn3gb05.json")}
           />
         </View>
       ),
@@ -148,8 +150,7 @@ export default function OnboardingPage() {
             // source={
             //   "https://lottie.host/31b09e48-e7ee-41bc-b25d-2690c7f55158/M48QmdmsDe.json"
             // }
-
-            source={require("./3 - Schedule (2).json")}
+            source={require("../src/assets/animation_lkn3gb05.json")}
           />
         </View>
       ),
@@ -157,7 +158,11 @@ export default function OnboardingPage() {
         <Button
           title="Continue"
           isBGDARK={false}
-          onPress={() => onboardingRef.current.goNext()}
+          onPress={() =>
+
+            setFirstLaunch(false)
+          
+          }
         />
       ),
       // image: require('../path/to/image2.png'),
@@ -167,7 +172,7 @@ export default function OnboardingPage() {
   return (
     <Onboarding
       pages={onboardingScreens}
-      onDone={() => setReady(true)}
+      onDone={() => setFirstLaunch(false)}
       transitionAnimationDuration={1000}
       showSkip={false}
       showDone={false}

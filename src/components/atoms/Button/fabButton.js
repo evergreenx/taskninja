@@ -12,8 +12,9 @@ const FabButton = ({ title, onPress }) => {
 const styles = StyleSheet.create({
   button: {
     position: "absolute",
+    zIndex: 20,
     // top: '0%',
-    bottom: "12%",
+    bottom: "15%",
     right: 16,
     backgroundColor: "#000000",
     borderRadius: 40,
