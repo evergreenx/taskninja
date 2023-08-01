@@ -62,7 +62,7 @@ const CustomTabBarButton = ({ label, icon, onPress, isFocused, color }) => {
         {icon === "calendar" && (
           <Octicons name="calendar" size={24} color={tabColor} />
         )}
-        {icon === "home" && (
+        {icon === "settings" && (
           <Ionicons name="md-settings-outline" size={24} color={tabColor} />
         )}
         {/* <Text style={{ color: tabColor, marginTop: 8 }}>{label}</Text> */}

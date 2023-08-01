@@ -3,10 +3,10 @@ import { View, Text } from "react-native";
 import { React, useState, useEffect } from "react";
 import { TabsLayout } from "../app/(tabs)/_layout.js";
 
-import { Amplify, AuthModeStrategyType,Auth } from "aws-amplify";
+import { Amplify, AuthModeStrategyType, Auth } from "aws-amplify";
 import awsExports from "../src/aws-exports";
 import Toast from "react-native-toast-message";
-import {  GestureHandlerRootView} from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PortalProvider } from "@gorhom/portal";
 
 // import { SplashScreen } from "expo-router";
@@ -147,7 +147,6 @@ export default function Layout() {
         <Text
           style={{
             color: "white",
-            fontFamily: "Poppins_600Regular",
             fontSize: 12,
             padding: 10,
           }}
@@ -157,7 +156,7 @@ export default function Layout() {
         <Text
           style={{
             color: "white",
-            fontFamily: "Poppins_600Regular",
+            fontFamily: "Poppins_600SemiBold",
             fontSize: 10,
             paddingHorizontal: 10,
           }}
@@ -168,8 +167,6 @@ export default function Layout() {
     ),
   };
 
- 
-
   // if (!Auth.currentAuthenticatedUser()) {
 
   //   <Redirect to="/onboarding" />;
@@ -179,12 +176,10 @@ export default function Layout() {
     <>
       {firstLaunch ? (
         // <Stack.Screen name="onboarding" />
-      <OnboardingScreen
-      firstLaunch={firstLaunch}
-      setFirstLaunch={setFirstLaunch}
-      
-      />
-
+        <OnboardingScreen
+          firstLaunch={firstLaunch}
+          setFirstLaunch={setFirstLaunch}
+        />
       ) : (
         <>
           <ThemeProvider
@@ -233,43 +228,41 @@ export default function Layout() {
                 }}
               >
                 {/* <Button title="Sign Out" onPress={() => signOut()}></Button> */}
- {/* <GestureHandlerRootView> */}
- <PortalProvider>
-                <Stack
-                  screenOptions={{
-                    headerShown: false,
-                  }}
-
-                  safeAreaInsets={{
-                    top: 0,
-                    bottom: 0,
-                  }}
-                  
-                  style={{
-                    flex: 1,
-                    width: "100%",
-                    padding: 10,
-                    fontFamily: "Poppins_600Regular",
-                  }}
-                  initialRouteName="(tabs)/note"
-                >
-                  {/* <Stack.Screen
+                <GestureHandlerRootView style={{ flex: 1 }}>
+                  <PortalProvider>
+                    <Stack
+                      screenOptions={{
+                        headerShown: false,
+                      }}
+                      safeAreaInsets={{
+                        top: 0,
+                        bottom: 0,
+                      }}
+                      style={{
+                        flex: 1,
+                        width: "100%",
+                        padding: 10,
+                        fontFamily: "Poppins_600SemiBold",
+                      }}
+                      initialRouteName="(tabs)/note"
+                    >
+                      {/* <Stack.Screen
                     name="onboarding"
                     options={{
                       headerShown: false,
                     }}
                   /> */}
-                  <Stack.Screen
-                    name="(tabs)"
-                    options={{
-                      headerShown: false,
-                    }}
-                  />
+                      <Stack.Screen
+                        name="(tabs)"
+                        options={{
+                          headerShown: false,
+                        }}
+                      />
 
-                  <Stack.Screen name="newNote" />
-                </Stack>
-                </PortalProvider>
-                {/* </GestureHandlerRootView> */}
+                      <Stack.Screen name="newNote" />
+                    </Stack>
+                  </PortalProvider>
+                </GestureHandlerRootView>
               </Authenticator>
             </Authenticator.Provider>
           </ThemeProvider>

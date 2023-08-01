@@ -1,4 +1,11 @@
-import { View, Text, Pressable, StyleSheet, FlatList,StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  FlatList,
+  StatusBar,
+} from "react-native";
 import { useState, useEffect, useMemo } from "react";
 import { FlashList } from "@shopify/flash-list";
 
@@ -120,7 +127,7 @@ export default function NoteScreen() {
   // const handleCreateNote = async () => {};
   return (
     <>
-        <StatusBar
+      <StatusBar
         barStyle="light-content"
         backgroundColor={"#ddd"}
         translucent
@@ -162,19 +169,23 @@ export default function NoteScreen() {
                   <Animated.View style={[styles.noteContainer, animatedStyle]}>
                     {item.notes.reverse().map((note) => (
                       <Pressable
+                        key={note.id}
                         style={styles.noteTextContainer}
                         onPress={() => {
                           router.push({
                             pathname: "note/id/",
-                            params: { name: note?.topic },
+                            params: {
+                              name: note?.topic,
+                              content: note?.content,
+                            },
                           });
                         }}
                       >
-                        <CustomText key={note.id} style={styles.noteText}>
+                        <CustomText style={styles.noteText}>
                           {note.topic}
                         </CustomText>
                         <CustomText style={styles.contentText}>
-                          {note.content}
+                          {note.content.slice(0, 50)}
                         </CustomText>
                       </Pressable>
                     ))}
@@ -187,6 +198,7 @@ export default function NoteScreen() {
 
         <FabButton
           title={"+"}
+          isDark  = {true}
           onPress={() => router.push("/newNote")}
         ></FabButton>
         {/* </Link> */}

@@ -6,7 +6,8 @@ type Note @model @auth(rules: [{allow: public, operations: [read]}, {allow: owne
 
 type Todo @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
   id: ID!
-  name: String!
-  description: String
+  title: String!
+  createdAt: AWSDateTime
+  completed: Boolean
 }
  

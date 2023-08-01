@@ -2,13 +2,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
 
-import { Auth } from 'aws-amplify';
+import { Auth ,  } from 'aws-amplify';
+
+
 
 import { Redirect } from 'expo-router';
 
 export default function index() {
     if (Auth.currentAuthenticatedUser()) {
-        return <Redirect href="/(tabs)/home" />;
+        return <Redirect href="/(tabs)/task" />;
       }
 
   return (

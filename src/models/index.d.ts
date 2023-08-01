@@ -39,24 +39,24 @@ export declare const Note: (new (init: ModelInit<Note>) => Note) & {
 type EagerTodo = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Todo, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
+    readOnlyFields: 'updatedAt';
   };
   readonly id: string;
-  readonly name: string;
-  readonly description?: string | null;
+  readonly title: string;
   readonly createdAt?: string | null;
+  readonly completed?: boolean | null;
   readonly updatedAt?: string | null;
 }
 
 type LazyTodo = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Todo, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
+    readOnlyFields: 'updatedAt';
   };
   readonly id: string;
-  readonly name: string;
-  readonly description?: string | null;
+  readonly title: string;
   readonly createdAt?: string | null;
+  readonly completed?: boolean | null;
   readonly updatedAt?: string | null;
 }
 
