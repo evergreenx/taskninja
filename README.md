@@ -5,6 +5,11 @@ TaskNinja is a productivity app that helps you stay organized and manage your ta
 
   [Link to Figma wireframe](https://www.figma.com/file/jb2gcjedcdtd8tImTPB0eC/TaskNinja?type=design&t=QbAUAM6ZkJCvyYa1-6)
 
+<video src="https://res.cloudinary.com/evergreenx/video/upload/v1690860472/642CB970-E7D6-43FD-976B-0BC7B79D76FF_j9n2c8.mov"></video>
+
+
+
+
 ## Features
 
 - **Task Management**: Create, organize, and prioritize your tasks with ease.
