@@ -62,7 +62,7 @@ export default function OnboardingScreen(
             //   "https://lottie.host/31b09e48-e7ee-41bc-b25d-2690c7f55158/M48QmdmsDe.json"
             // }
 
-            source={require("../src/assets/3 - Schedule (2).json")}
+            source={require("../src/assets/animation_lkn3gb05.json")}
           />
         </View>
       ),
@@ -102,7 +102,7 @@ export default function OnboardingScreen(
             //   "https://lottie.host/31b09e48-e7ee-41bc-b25d-2690c7f55158/M48QmdmsDe.json"
             // }
 
-            source={require("../src/assets/animation_lkn3gb05.json")}
+            source={require("../src/assets/Animation - 1690575268670")}
           />
         </View>
       ),
@@ -150,7 +150,7 @@ export default function OnboardingScreen(
             // source={
             //   "https://lottie.host/31b09e48-e7ee-41bc-b25d-2690c7f55158/M48QmdmsDe.json"
             // }
-            source={require("../src/assets/animation_lkn3gb05.json")}
+            source={require("../src/assets/3 - Schedule (2).json")}
           />
         </View>
       ),
